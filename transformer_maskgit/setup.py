@@ -2,6 +2,8 @@ from setuptools import setup, find_packages
 
 setup(
   name = 'transformer_maskgit',
+  version='0.1.0',  # Required
+  packages=find_packages(),
   install_requires=[
     'accelerate',
     'beartype',
