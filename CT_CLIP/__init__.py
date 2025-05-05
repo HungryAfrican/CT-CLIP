@@ -1,1 +1,1 @@
-from ct_clip.ct_clip import CTCLIP, TextTransformer
+from CT_CLIP.ct_clip import CTCLIP, TextTransformer
