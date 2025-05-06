@@ -586,15 +586,18 @@ class CTCLIP(nn.Module):
 
     def state_dict(self, *args, **kwargs):
         return super().state_dict(*args, **kwargs)
-
+    '''
     def load_state_dict(self, *args, **kwargs):
-        return super().load_state_dict(*args, **kwargs,strict=False)
+        return super().load_state_dict(*args, **kwargs)
+'''
+    def load_state_dict(self, state_dict, strict=True):
+        return super().load_state_dict(state_dict, strict=strict)
 
     def load(self, path):
         path = Path(path)
         assert path.exists()
         pt = torch.load(str(path))
-        self.load_state_dict(pt,strict=False)
+        self.load_state_dict(pt)
 
     def tokenize(self, prompt):
         text_tokens=self.tokenizer(prompt, return_tensors="pt", padding="max_length", truncation=True, max_length=512).to(torch.cuda)

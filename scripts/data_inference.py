@@ -17,6 +17,7 @@ class CTReportDatasetinfer(Dataset):
         self.data_folder = data_folder
         self.min_slices = min_slices
         self.labels = labels
+        print(csv_file)
         self.accession_to_text = self.load_accession_text(csv_file)
         self.paths=[]
         self.samples = self.prepare_samples()
@@ -27,7 +28,8 @@ class CTReportDatasetinfer(Dataset):
         self.nii_to_tensor = partial(self.nii_img_to_tensor, transform = self.transform)
 
     def load_accession_text(self, csv_file):
-        df = pd.read_csv(csv_file)
+        df = pd.read_csv(csv_file, sep=';')
+        print(df)
         accession_to_text = {}
         for index, row in df.iterrows():
             accession_to_text[row['VolumeName']] = row["Findings_EN"],row['Impressions_EN']
