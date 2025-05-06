@@ -21,6 +21,7 @@ class CTReportDatasetinfer(Dataset):
         self.accession_to_text = self.load_accession_text(csv_file)
         self.paths=[]
         self.samples = self.prepare_samples()
+        print(self.samples)
         self.transform = transforms.Compose([
             transforms.Resize((resize_dim,resize_dim)),
             transforms.ToTensor()
@@ -29,7 +30,6 @@ class CTReportDatasetinfer(Dataset):
 
     def load_accession_text(self, csv_file):
         df = pd.read_csv(csv_file, sep=';')
-        print(df)
         accession_to_text = {}
         for index, row in df.iterrows():
             accession_to_text[row['VolumeName']] = row["Findings_EN"],row['Impressions_EN']
@@ -71,6 +71,7 @@ class CTReportDatasetinfer(Dataset):
                     if len(onehotlabels) > 0:
                         samples.append((nii_file, text_final, onehotlabels[0]))
                         self.paths.append(nii_file)
+        print("\n",samples)
         return samples
 
     def __len__(self):

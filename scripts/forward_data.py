@@ -171,7 +171,7 @@ class CTClipInference(nn.Module):
         self.lr=lr
         # Load the pre-trained weights
         self.ds = CTReportDatasetinfer(data_folder=data_folder, csv_file=reports_file,labels=labels)
-
+        print(self.ds)
         # Split dataset into train and validation sets
 
 
