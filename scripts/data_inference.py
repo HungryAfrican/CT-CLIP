@@ -22,6 +22,10 @@ class CTReportDatasetinfer(Dataset):
         self.paths=[]
         self.samples = self.prepare_samples()
         print(self.samples)
+        if self.samples == []:
+          #Wrong data input
+          raise AssertionError
+
         self.transform = transforms.Compose([
             transforms.Resize((resize_dim,resize_dim)),
             transforms.ToTensor()
